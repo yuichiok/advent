@@ -25,15 +25,38 @@ int main(void)
   for(int i=1; i < numeric_limits<int>::max(); i = i+2){
 		  sqrt = i;
 		  square = i*i;
-		  if(input < square) break;
+		  if(input <= square) break;
   }
 
   sqrt = sqrt-2;
+  square = sqrt * sqrt;
 
-  cout << sqrt-2 << "^2 < " << input << " < " << sqrt << "^2" << endl;
+  int diff = input - square;
+  int side = sqrt+1;
+  int k = 0;
 
+  for(int j=1; j < 5; j++){
+		  if(diff <= side*j){
+				  diff = diff - side*(j-1);
+				  break;
+		  }
+  }
 
-	
-	return 0;
+  int radius = (sqrt - 1)/2;
+
+  int hori = radius + 1;
+  int vert = 0;
+
+  if(radius - diff > 0){
+		  vert = (radius + 1) - diff;
+  }else if(radius - diff < 0){
+		  vert = diff - (radius + 1);
+  }
+
+  int coor = hori + vert;
+
+  cout << coor << endl;
+
+  return 0;
 	
 }
